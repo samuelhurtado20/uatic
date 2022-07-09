@@ -1,0 +1,8 @@
+
+    <h3>Imagenes de la Valuacion</h3>
+
+<?php
+for ($j = 0; $j < count($this->imagenes); $j++):
+
+  echo "<img width='500px' height='500px' src='".BASE_URL."views/vivienda/imagenes/".$this->imagenes[$j]['nombre']."'>";
+endfor;?>

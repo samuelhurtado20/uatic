@@ -1,0 +1,40 @@
+
+    <h3>Partidas Registradas</h3>
+
+<?php if(isset($this->partidas) && count($this->partidas)): ?>
+<table class="lista">
+	<thead>
+		<td>id</td>
+		<td>covenin</td>
+		<td>descripcion de la partida</td>
+		<td>unidad</td>
+		<td>rendimiento</td>
+		<td>precio</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->partidas); $i++): ?>
+    
+    <tr>
+        <td><?php echo $this->partidas[$i]['id_partidas']; ?></td>
+        <td><?php echo $this->partidas[$i]['codigo_covenin']; ?></td>
+        <td><?php echo $this->partidas[$i]['descripcion']; ?></td>
+        <td><?php echo $this->partidas[$i]['unidad_medida']; ?></td>
+        <td><?php echo $this->partidas[$i]['rendimiento']; ?></td>
+        <td><b><?php echo number_format($this->partidas[$i]['precio_unitario'], 2, ',', '.'); ?></b></td>
+        <td><a href="<?php echo BASE_URL . 'partida/ver/' . $this->partidas[$i]['id_partidas']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/eye.png'></a></td>
+        <td><a href="<?php echo BASE_URL . 'partida/editar/' . $this->partidas[$i]['id_partidas']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a></td>
+        <td><a onClick="confirma('<?php echo BASE_URL . 'partida/eliminar/' . $this->partidas[$i]['id_partidas']; ?>'
+); return false;"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a></td>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No Existen Partidas Registradas</strong><br>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) echo $this->paginacion; ?>
+
+

@@ -1,0 +1,135 @@
+<h3>Administrar Cuenta</h3>
+<form name="form1" method="post" action="<?php echo BASE_URL; ?>registro/editar/<?php if(isset($this->datos)) echo $this->datos['id']; ?>" enctype="multipart/form-data">
+<table>
+
+    <input type="hidden" name="guardar" value="1">
+    <input type="hidden" name="id" value="<?php if(isset($this->datos)) echo $this->datos['id']; ?>">
+    
+    <tr>
+        <td valign=top rowspan="20">
+            
+            <div id="list">
+                <img id="imagen" src="<?php echo BASE_URL;?>views/registro/imagenes/<?php if($this->datos['foto'] != '') {echo $this->datos['foto'];} if($this->datos['foto'] == '') {echo 'default.jpg';} ?>" width="150px" height="150px"><br>
+                 
+            </div>
+            <br>
+            <h4><a class="btn btnentrar" href="<?php echo BASE_URL;?>registro/change/<?php if(isset($this->datos)) echo $this->datos['id']; ?>">Cambiar Imagen</a>
+            </h4>
+            <br> 
+            <h4><a class="btn btnentrar" href="<?php echo BASE_URL;?>registro/password/<?php if(isset($this->datos)) echo $this->datos['id']; ?>">Cambiar Clave</a>
+            </h4>
+            <br>
+            <h4><a class="btn btnentrar" href="<?php echo BASE_URL;?>registro/residencia/<?php if(isset($this->datos)) echo $this->datos['id']; ?>">Cambiar Residencia</a>
+            </h4>                  
+        </td>    
+    </tr>
+    <tr>
+        <td colspan='2'>
+            <h2>datos personales</h2><hr size="5" noshade style="color: #ffffff;">
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <label>cedula de identidad: </label>
+        <br />
+        <input type="text" name="cedula" class="medio numerico" value="<?php if(isset($this->datos)) echo $this->datos['cedula']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr>
+        <td>
+        <label>Nombre (s): </label>
+        <br />
+        <input type="text" name="nombre" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['nombre']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr><td>
+        <label>apellido (s): </label>
+        <br />
+        <input type="text" name="apellido" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['apellido']; ?>" autocomplete="off">
+    </td></tr>
+    
+    <tr><td>
+        <label>Titulo Obtenido: </label>
+        <br />
+        <input type="text" name="nivel" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['nivel']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr><td>
+        <label>telefono de contacto: </label>
+        <br />
+        <input type="text" name="telefono" class="medio numerico" value="<?php if(isset($this->datos)) echo $this->datos['telefono']; ?>" autocomplete="off">
+    </td></tr>
+
+  
+    <tr><td>
+        <label>Email: </label>
+        <br />
+        <input type="text" name="email" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['email']; ?>" autocomplete="off" disabled>
+    </td></tr>
+
+    <tr>
+        <td colspan='2'>
+            <h2>lugar de residencia</h2><hr size="5" noshade style="color: #ffffff;">
+        </td>
+
+    </tr>
+
+    <tr><td>
+        <label>estado</label><br />
+            <input type="text" name="estado" class="medio"  value="<?php if (isset($this->datos['Estado'])) echo $this->datos['Estado']; ?>" disabled><br />
+
+        <label>municipio</label><br />
+            <input type="text" name="municipio" class="medio"  value="<?php if (isset($this->datos['municipio'])) echo $this->datos['municipio']; ?>" disabled><br />
+
+        <label>parroquia</label><br />
+            <input type="text" name="parroquia" class="medio"  value="<?php if (isset($this->datos['Parroquia'])) echo $this->datos['Parroquia']; ?>" disabled><br />
+
+    </td></tr>
+
+    <tr><td>
+        <label>direccion de habitacion: </label>
+        <br />
+        <textarea autocomplete="off" name="direccion" class="media"><?php if(isset($this->datos)) echo $this->datos['direccion']; ?></textarea>
+    </td></tr>
+
+    <tr>
+        <td colspan='2'>
+            <h2>datos laborales</h2><hr size="5" noshade style="color: #ffffff;">
+        </td>
+
+    </tr>
+
+    <tr><td>
+        <label>Tipo de Usuario: </label>
+        <br />
+        <select name="role" id="role" class="select" disabled>
+            <option value="admin" <?php if ($this->datos['role']=="admin") echo "selected"; ?>>Administrador</option>
+            <option value="proyecto" <?php if ($this->datos['role']=="proyecto") echo "selected"; ?>>Proyectista</option>
+            <option value="tecnico" <?php if ($this->datos['role']=="tecnico") echo "selected"; ?>>Tecn&iacute;co</option>
+        </select>
+    </td></tr>
+
+    <tr><td>
+        <label>cargo actual: </label>
+        <br />
+        <input type="text" name="cargo" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['cargo']; ?>" autocomplete="off" readonly>
+    </td></tr> 
+
+    <tr><td>
+        <label>estado</label><br />
+            <input type="text" name="estado" class="medio"  value="<?php if (isset($this->laboral['Estado'])) echo $this->laboral['Estado']; ?>" disabled><br />
+
+        <label>municipio</label><br />
+            <input type="text" name="municipio" class="medio"  value="<?php if (isset($this->laboral['municipio'])) echo $this->laboral['municipio']; ?>" disabled><br />
+    </td></tr>    
+
+        
+    <tr><td colspan="2">
+        <input type="submit" class="btn btn-otro" value="editar">
+    </td></tr>    
+
+</table>
+</form>
+
+<br><br>
+

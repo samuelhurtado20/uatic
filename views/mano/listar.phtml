@@ -1,0 +1,32 @@
+    <h3>Mano de Obra Registradas</h3>
+
+<?php if(isset($this->manos) && count($this->manos)): ?>
+<table class="lista">
+	<thead>
+		<td width="40px">id</td>
+		<td width="460px">mano de obra</td>
+		<td width="100px">unidad</td>
+                <td width="120px">jornal</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->manos); $i++): ?>
+    <tr>
+        <td><?php echo $this->manos[$i]['id_mano']; ?></td>
+        <td><?php echo $this->manos[$i]['nombre']; ?></td>
+        <td><?php echo $this->manos[$i]['unidad']; ?></td>
+        <td><?php echo $this->manos[$i]['jornal']; ?></td>
+        <td><a href="<?php echo BASE_URL . 'mano/editar/' . $this->manos[$i]['id_mano']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a></td>
+        <td><a onClick="confirma('<?php echo BASE_URL . 'mano/eliminar/' . $this->manos[$i]['id_mano']; ?>'
+); return false;"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a></td>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No Existen Equipos Registrados</strong><br>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) { echo $this->paginacion; } ?>
+

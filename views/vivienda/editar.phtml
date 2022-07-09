@@ -1,0 +1,60 @@
+
+    <h3>Detalles De La Vivienda</h3>
+
+    <form method="post" action="<?php echo BASE_URL; ?>vivienda/editar/<?php echo $this->viviendas['id']; ?>/<?php echo $this->viviendas['id_proyecto']; ?>" id="formulario">
+        <table>
+            <input type="hidden" name="id_proyecto" VALUE="<?php echo $this->viviendas['id_proyecto']; ?>">
+            <input type="hidden" name="id" VALUE="<?php echo $this->viviendas['id']; ?>">
+            <input type="hidden" name="guardar" VALUE="1">
+            <tr><td width="180px">
+
+                    
+                    <label>nacionalidad</label><br />
+                    <select name='nacionalidad'>
+                        <option value='V'>venezolano</option>
+                        <option value='E'>extranjero</option>
+                    </select><br />
+
+                    <label>cedula</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['cedula_jefe']; ?>" name='cedula_jefe'><br />
+
+                    <label>sexo</label><br />
+                    <select name='sexo'>
+                        <option>masculino</option>
+                        <option>femenino</option>
+                    </select><br />
+
+                </td>
+                <td>
+                    <label>Primer y Segundo Nombre</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['nombres']; ?>" class='media' name='nombres'><br />
+
+                    <label>Primer y Segundo Apellido</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['apellidos']; ?>" class='media' name='apellidos'><br />
+
+                    <label>correo electronico</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['correo']; ?>" class='media' name='correo'><br />
+
+                    <label>ubicacion de la vivienda</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['ubicacion']; ?>" class='media' name='ubicacion'><br />
+                </td>
+                <td>
+
+
+                    <label>telefono</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['telefono']; ?>" name='telefono'><br />
+
+                    <label>parentesco</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['parentesco']; ?>" name='parentesco'><br />
+
+                    <label>ocupacion</label><br />
+                    <input type="text" value="<?php echo $this->viviendas['ocupacion']; ?>" name='ocupacion'><br />
+
+                </td>
+            </tr>
+            <tr><td COLSPAN="2">
+                    <input type='submit' value='editar' class="btn btn-otro">
+
+                </td>
+            </tr>
+        </table></form>

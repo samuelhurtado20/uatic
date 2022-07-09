@@ -1,0 +1,261 @@
+
+    <h3>analisis de precios unitarios</h3>
+    <table>
+        <tr>
+            <td><label>COVENIN</label></td>
+            <td><label>UNIDAD</label></td>
+            <td><label>CANT. ANALISIS</label></td>
+
+            <td><label>RENDIMIENTO</label></td>
+        </tr>
+        <tr>
+            <td><input type='text' name='codigo_covenin' 	id='covenin' 		maxlength="8" 	readonly value="<?php if (isset($this->partidaPresupuesto['codigo_covenin'])) echo $this->partidaPresupuesto['codigo_covenin']; ?>"></td>
+            <td><input type='text' name='unidad_medida'		id='unidad' 		maxlength="8" 	readonly value="<?php if (isset($this->partidaPresupuesto['unidad_medida'])) echo $this->partidaPresupuesto['unidad_medida']; ?>"></td>
+            <td><input type='text' name='cantidad' 		id='cant_analisis' 	maxlength="8" 	readonly value="<?php if (isset($this->partidaPresupuesto['cantidad'])) echo $this->partidaPresupuesto['cantidad']; ?>"></td>
+
+            <td><input type='text' name='rendimiento' 		id='rendimiento' 	maxlength="8"  	readonly value="<?php if (isset($this->partidaPresupuesto['rendimiento'])) echo $this->partidaPresupuesto['rendimiento']; ?>"></td>
+        </tr>
+
+        <tr><td ><LABEL>MINI DESCRIPCION</LABEL></td></tr>
+        <tr><td colspan='6'><input type='text' name='mini_descripcion' 		id='mini_descripcion' class='largo' readonly value="<?php if (isset($this->partidaPresupuesto['mini_descripcion'])) echo $this->partidaPresupuesto['mini_descripcion']; ?>"></td></tr>
+
+        <tr><td colspan='6'><LABEL>DESCRIPCION DE LA PARTIDA</LABEL></td></tr>
+        <tr><td colspan='6'><textarea name="descripcion" rows="3" cols="120" class='largo' readonly><?php if (isset($this->partidaPresupuesto['descripcion'])) echo $this->partidaPresupuesto['descripcion'] ?></textarea></td></tr>
+
+    </table>
+
+    <h2>materiales</h2>
+    <table class="lista">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>descripcion del material</td>
+                <td>unidad</td>
+                <td>precio</td>
+                <td>cantidad</td>
+                <td>monto</td>
+                <td colspan="2">opciones</td>
+            </tr>
+        </thead>
+        <?php
+
+        if (isset($this->materialesPresupuesto) && count($this->materialesPresupuesto)):
+
+            for ($i = 0; $i < count($this->materialesPresupuesto); $i++):
+                ?>
+
+                <tr>
+                    <td><?php echo $this->materialesPresupuesto[$i]['id_materiales']; ?></td>
+                    <td><?php echo $this->materialesPresupuesto[$i]['material']; ?></td>
+                    <td><?php echo $this->materialesPresupuesto[$i]['unidad']; ?></td>
+                    <td><?php echo $this->materialesPresupuesto[$i]['precio']; ?></td>
+                    <td><?php echo $this->materialesPresupuesto[$i]['cantidad']; ?></td>
+                    <td><?php echo number_format($this->materialesPresupuesto[$i]['monto'], 2, ',', '.'); ?></td>
+
+                    <td><a href="<?php echo BASE_URL . 'material/eliminarMaterialPresupuesto/' . $this->materialesPresupuesto[$i]['id'] . '/' . $this->partidaPresupuesto['id_partidas_presupuesto']; ?>"><img width='16px' src='<?php echo BASE_URL; ?>public/img/delete.ico'></a></td>
+                </tr>
+
+                <?php
+            endfor;
+        endif;
+        ?>
+        <form id="form1" method="post" action="<?php echo BASE_URL; ?>material/materialPresupuesto">
+            <input type="hidden" name="id_partidas_presupuesto" value="<?php echo $this->partidaPresupuesto['id_partidas_presupuesto']; ?>">
+            <input type="hidden" name="guardar" value="1" />
+            <tr><td><input name="id_materiales" id="id_materiales" 	class='peque' readonly/></td>
+                <td><input name="descripcion" 	id="descripcion" 	class='media'/></td>
+                <td><input name="unidad2" 	id="unidad2"  		class='pequeño'  readonly/></td>
+                <td><input name="precio" 	id="precio"  		class='pequeño'  readonly/></td>
+                <td><input name="cantidad" 	id="cantidad" 		class='pequeño' /></td>
+
+                <td><input name="monto" 		id="monto"  		class='pequeño' readonly /></td>
+                <td><input name='new_material'  type='submit' 		class="btn btn-otro" value='guardar' ></td>
+            </tr>
+
+        </form>
+
+        <tr>
+            <td colspan='7' class='derecha'><label>total materiales: </label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['total_materiales'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+    </table>
+
+    <!-- listar equipos -->
+    <h2>equipos</h2>
+    <table class="lista">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>descripcion del equipo</td>
+                <td>unidad</td>
+                <td>cop</td>
+                <td>precio</td>
+                <td>cantidad</td>
+                <td>monto</td>
+                <td colspan="2">opciones</td>
+            </tr>
+        </thead>
+        <?php
+        if (isset($this->equiposPresupuesto) && count($this->equiposPresupuesto)):
+
+            for ($i = 0; $i < count($this->equiposPresupuesto); $i++):
+                ?>
+
+                <tr>
+                    <td><?php echo $this->equiposPresupuesto[$i]['id_equipo']; ?></td>
+                    <td><?php echo $this->equiposPresupuesto[$i]['nombre']; ?></td>
+                    <td><?php echo $this->equiposPresupuesto[$i]['unidad']; ?></td>
+                    <td><?php echo $this->equiposPresupuesto[$i]['COP']; ?></td>
+                    <td><?php echo $this->equiposPresupuesto[$i]['precio']; ?></td>
+                    <td><?php echo $this->equiposPresupuesto[$i]['cantidad']; ?></td>
+                    <td><?php echo number_format($this->equiposPresupuesto[$i]['monto'], 2, ',', '.'); ?></td>
+
+                    <td><a href="<?php echo BASE_URL . 'equipo/eliminarEquipoPresupuesto/' . $this->equiposPresupuesto[$i]['id'] . '/' . $this->partidaPresupuesto['id_partidas_presupuesto']; ?>"><img width='16px' src='<?php echo BASE_URL; ?>public/img/delete.ico'></a></td>
+                </tr>
+
+                <?php
+            endfor;
+        endif;
+        ?>
+        <form id="form1" method="post" action="<?php echo BASE_URL; ?>equipo/equipoPresupuesto">
+            <input type="hidden" name="id_partidas_presupuesto" value="<?php echo $this->partidaPresupuesto['id_partidas_presupuesto']; ?>">
+            <input type="hidden" name="guardar" value="1" />
+            <tr><td><input name="id_equipo"             id="id_equipo" 	class='peque' readonly/></td>
+                <td><input name="descripcion_e" 	id="descripcion_e" 	class='media'/></td>
+                <td><input name="unidad_e" 		id="unidad_e"  		class='pequeño'  readonly/></td>
+                <td><input name="cop"                   id="cop"  		class='pequeño'  readonly/></td>
+                <td><input name="precio_e" 		id="precio_e"  		class='pequeño'  readonly/></td>
+                <td><input name="cantidad_e" 		id="cantidad_e" 		class='pequeño' /></td>
+                <td><input name="monto_e" 		id="monto_e"  		class='pequeño' readonly /></td>
+                <td><input name='new_material'  type='submit' 		class="btn btn-otro" value='guardar' ></td>
+            </tr>
+
+        </form>
+
+        <tr>
+            <td colspan='8' class='derecha'><label>total equipos: </label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['total_equipos'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+    </table>
+    <!-- listar mano de obra -->
+    <h2>mano de obra</h2>
+    <table class="lista">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>descripcion de la mano de obra</td>
+                <td>unidad</td>
+                <td>jornal</td>
+                <td>cantidad</td>
+                <td>monto</td>
+                <td colspan="2">opciones</td>
+            </tr>
+        </thead>
+        <?php
+        if (isset($this->manoPresupuesto) && count($this->manoPresupuesto)):
+
+            for ($i = 0; $i < count($this->manoPresupuesto); $i++):
+                ?>
+
+                <tr>
+                    <td><?php echo $this->manoPresupuesto[$i]['id_mano']; ?></td>
+                    <td><?php echo $this->manoPresupuesto[$i]['nombre']; ?></td>
+                    <td><?php echo $this->manoPresupuesto[$i]['unidad']; ?></td>
+                    <td><?php echo $this->manoPresupuesto[$i]['jornal']; ?></td>
+                    <td><?php echo $this->manoPresupuesto[$i]['cantidad']; ?></td>
+                    <td><?php echo number_format($this->manoPresupuesto[$i]['monto'], 2, ',', '.'); ?></td>
+
+                    <td><a href="<?php echo BASE_URL . 'mano/eliminarManoPresupuesto/' . $this->manoPresupuesto[$i]['id'] . '/' . $this->partidaPresupuesto['id_partidas_presupuesto']; ?>"><img width='16px' src='<?php echo BASE_URL; ?>public/img/delete.ico'></a></td>
+                </tr>
+
+                <?php
+            endfor;
+        endif;
+        ?>
+        <form id="form1" method="post" action="<?php echo BASE_URL; ?>mano/manoPresupuesto">
+            <input type="hidden" name="id_partidas_presupuesto" value="<?php echo $this->partidaPresupuesto['id_partidas_presupuesto']; ?>">
+            <input type="hidden" name="guardar" value="1" />
+            <tr><td><input name="id_mano" id="id_mano" 	class='peque' readonly/></td>
+                <td><input name="descripcion_m" 	id="descripcion_m" 	class='media'/></td>
+                <td><input name="unidad_m" 		id="unidad_m"  		class='pequeño'  readonly/></td>
+                <td><input name="jornal" 		id="jornal"  		class='pequeño'  readonly/></td>
+                <td><input name="cantidad_m" 		id="cantidad_m" 		class='pequeño' /></td>
+
+                <td><input name="monto_m" 		id="monto_m"  		class='pequeño' readonly /></td>
+                <td><input name='new_material'  type='submit' 		class="btn btn-otro" value='guardar' ></td>
+            </tr>
+
+        </form>
+
+        <tr>
+            <td colspan='7' class='derecha'>
+                <label>sub-total mano de obra: </label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['total_mano'], 2, ',', '.'); ?> bs.'>+
+                <label>prestaciones sociales (<?php echo $this->porcentajes['prestaciones'] . "%"; ?>): </label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['prestaciones'], 2, ',', '.'); ?> bs.'>=
+                <label>total general mano de obra: </label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['total_mano_obra'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan='7' class='derecha'><label>total mano de obra:</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['total_mano_obra_f'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+    </table>
+    <table class="lista">
+
+        <tr>
+            <td width='450px'><label>(total materiales + total equipos + total mano de obra)</label></td>
+            <td colspan='7' class='derecha'><label>costo directo:</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['costo_unidad'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>(costo directo * <?php echo $this->porcentajes['administracion'] . "%"; ?>)</label></td>
+            <td colspan='7' class='derecha'><label>gastos de administracion (<?php echo $this->porcentajes['administracion'] . "%"; ?>):</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['costo_unidad'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>(costo directo + gastos de administracion)</label></td>
+            <td colspan='7' class='derecha'><label>sub-total a:</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['subtotal_a'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>(sub-total a * <?php echo $this->porcentajes['utilidad'] . "%"; ?>)</label></td>
+            <td colspan='7' class='derecha'><label>utilidad (<?php echo $this->porcentajes['utilidad'] . "%"; ?>):</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['utilidad'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>(sub-total a + utilidad)</label></td>
+            <td colspan='7' class='derecha'><label>sub-total b:</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['subtotal_b'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>(sub-total b * <?php echo $this->porcentajes['iva'] . "%"; ?>)</label></td>
+            <td colspan='7' class='derecha'><label>i.v.a (<?php echo $this->porcentajes['iva'] . "%"; ?>):</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['iva'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>(sub-total b + i.v.a)</label></td>
+            <td colspan='7' class='derecha'><label>precio unitario:</label>
+                <input class='derecha' type='text' readonly value='<?php echo number_format($this->presupuesto['precio'], 2, ',', '.'); ?> bs.'>
+            </td>
+        </tr>
+    </table>
+

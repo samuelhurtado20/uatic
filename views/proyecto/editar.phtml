@@ -1,0 +1,77 @@
+
+    <h3>editar proyecto</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>proyecto/editar" id="form-proyecto">
+        <table>
+            <input type="hidden" name="guardar" value="1">
+            <input type="hidden" name="id_proyecto" value="<?php if (isset($this->datos['id_proyecto'])) echo $this->datos['id_proyecto']; ?>">
+            <tr>
+                <td valign="top">
+                    <label>nombre del proyecto</label><br />
+                    <textarea name="nombre_proyecto" class='media'><?php if (isset($this->datos['nombre_proyecto'])) echo $this->datos['nombre_proyecto']; ?></textarea><br />
+
+                    <label>estado</label><br />
+                    <input type="text" name="estado" class="medio"  value="<?php if (isset($this->datos['Estado'])) echo $this->datos['Estado']; ?>" disabled><br />
+
+                    <label>municipio</label><br />
+                    <input type="text" name="municipio" class="medio"  value="<?php if (isset($this->datos['municipio'])) echo $this->datos['municipio']; ?>" disabled><br />
+
+                    <label>parroquia</label><br />
+                    <input type="text" name="parroquia" class="medio"  value="<?php if (isset($this->datos['Parroquia'])) echo $this->datos['Parroquia']; ?>" disabled><br />
+
+                    <label>consejo comunal</label><br />
+                    <input type="text" name="" class="medio"  value="<?php if (isset($this->datos['ConsejoComunal'])) echo $this->datos['ConsejoComunal']; ?>" disabled><br />
+
+                    
+                </td>
+                <td>
+                    <label>viviendas a sustituir</label><br />
+                    <input type="text" name="viviendas_sustituir"  value="<?php if (isset($this->datos['viviendas_sustituir'])) echo $this->datos['viviendas_sustituir']; ?>"><br />
+
+                    <label>viviendas a rehabilitar</label><br />
+                    <input type="text" name="viviendas_rehabilitar" value="<?php if (isset($this->datos['viviendas_rehabilitar'])) echo $this->datos['viviendas_rehabilitar']; ?>"><br />
+
+                    <label>modelo de la vivienda</label><br />
+                    <select name="modelo_vivienda" id="modelo_vivienda"  class="select">
+                        
+                    </select><br />
+
+                    <label>metros cuadados de construccion</label><br />
+                    <input type="text" name="m2" id='m2' readonly><br />
+
+
+                    <label>n° cuartos</label><br />
+                    <input type="text" name="n_cuartos" id='n_cuartos' readonly><br />
+
+                    <label>n° baños</label><br />
+                    <input type="text" name="n_banos" id='n_banos' readonly><br />
+                </td>
+                <td>
+                    <label>fecha de inicio</label><br />
+                    <input type="text" name="fecha_inicio"  value="<?php if (isset($this->datos['fecha_inicio'])) echo $this->datos['fecha_inicio']; ?>"><br />
+
+                    <label>fecha de culminacion</label><br />
+                    <input type="text" name="fecha_culminacion"  value="<?php if (isset($this->datos['fecha_culminacion'])) echo $this->datos['fecha_culminacion']; ?>"><br />
+
+                    <label>responsable uatic</label><br />
+                    <input type="text" name="responsable_uatic" class='medio'  value="<?php if (isset($this->datos['responsable_uatic'])) echo $this->datos['responsable_uatic']; ?>"><br />
+
+                    <label>telefono responsable uatic</label><br />
+                    <input type="text" name="telefono_uatic"  value="<?php if (isset($this->datos['telefono_uatic'])) echo $this->datos['telefono_uatic']; ?>"><br />
+
+                    <label>responsable consejo comunal</label><br />
+                    <input type="text" name="responsable_consejo"  class='medio'  value="<?php if (isset($this->datos['responsable_consejo'])) echo $this->datos['responsable_consejo']; ?>"><br />
+
+                    <label>telefono responsable consejo comunal</label><br />
+                    <input type="text" name="telefono_consejo"  value="<?php if (isset($this->datos['telefono_consejo'])) echo $this->datos['telefono_consejo']; ?>"><br />
+                </td>
+            </tr>
+
+            <tr><td COLSPAN="3">                    
+                    <a class="btn btnentrar" href="<?php echo BASE_URL;?>proyecto/consejo/<?php if(isset($this->datos)) echo $this->datos['id_proyecto']; ?>">Cambiar Consejo Comunal</a>
+                    <br><br>
+                    <input type='submit' value='Guardar' class="btn">
+                </td>
+            </tr>
+
+        </table></form>
+

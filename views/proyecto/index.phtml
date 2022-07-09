@@ -1,0 +1,43 @@
+
+    <h3>Proyectos Registrados</h3>
+
+<?php if(isset($this->proyectos) && count($this->proyectos)): ?>
+<table class="lista">
+	<thead>
+		<td width="40px">id</td>
+		<td width="440px">nombre del proyecto</td>
+		<td width="140px">estado / municipio</td>
+		<td width="240px">parroquia / consejo comunal</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->proyectos); $i++): ?>
+    
+    <tr>
+        <td><?php echo $this->proyectos[$i]['id_proyecto']; ?></td>
+        <td><?php echo $this->proyectos[$i]['nombre_proyecto']; ?></td>
+        <td><?php echo $this->proyectos[$i]['Estado']; ?> /<br /> 
+            <?php echo $this->proyectos[$i]['municipio']; ?></td>
+        <td><?php echo $this->proyectos[$i]['Parroquia']; ?> /<br />
+            <?php echo $this->proyectos[$i]['ConsejoComunal']; ?>
+        </td>
+        
+        <td><a href="<?php echo BASE_URL . 'proyecto/verProyecto/' . $this->proyectos[$i]['id_proyecto']; ?>">   <img width='18px' src='<?php echo BASE_URL;?>public/img/eye.png'></a></td>
+        <?php if (Session::accesoViewEstricto(array('admin'))): ?>
+        <td><a href="<?php echo BASE_URL . 'proyecto/editar/' . $this->proyectos[$i]['id_proyecto']; ?>">        <img width='18px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a></td>
+        <?php endif; ?>
+        <?php if (Session::accesoViewEstricto(array('admin'))): ?>
+        <td><a onClick="confirma('<?php echo BASE_URL . 'proyecto/eliminar/' . $this->proyectos[$i]['id_proyecto']; ?>'); return false;"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a></td>
+        <?php endif; ?>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No Existen Proyectos Registrados</strong><br>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) echo $this->paginacion; ?>
+
+

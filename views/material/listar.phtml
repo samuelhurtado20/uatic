@@ -1,0 +1,32 @@
+
+    <h3>Materiales Registrados</h3>
+
+<?php if(isset($this->materiales) && count($this->materiales)): ?>
+<table class="lista">
+	<thead>
+		<td width="60px">id</td>
+		<td width="460px">nombre del material</td>
+		<td width="120px">unidad de medida</td>
+		<td width="120px">precio actual</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->materiales); $i++): ?>
+    <tr>
+        <td><?php echo $this->materiales[$i]['id_materiales']; ?></td>
+        <td><?php echo $this->materiales[$i]['material']; ?></td>
+        <td><?php echo $this->materiales[$i]['unidad']; ?></td>
+        <td><?php echo $this->materiales[$i]['precio']; ?></td>
+        <td><a href="<?php echo BASE_URL . 'material/editar/' . $this->materiales[$i]['id_materiales']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a></td>
+        <td><a onClick="confirma('<?php echo BASE_URL . 'material/eliminar/' . $this->materiales[$i]['id_materiales']; ?>'
+); return false;"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a></td>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No Existen Materiales Registrados</strong><br>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) echo $this->paginacion; ?>

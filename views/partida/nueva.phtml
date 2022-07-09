@@ -1,0 +1,32 @@
+    <h3>analisis de precios unitarios</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>partida/nueva">
+        <input type="hidden" name="guardar" value="1" />
+    <table>
+        <tr>
+            <td><label>COVENIN</label></td>
+            <td><label>UNIDAD</label></td>
+            <td><label>CANT. ANALISIS</label></td>
+
+            <td><label>RENDIMIENTO</label></td>
+        </tr>
+        <tr>
+            <td><input type='text' name='codigo_covenin' 	id='covenin' 		maxlength="12" autocomplete="off"></td>
+            <td><input type='text' name='unidad_medida'		id='unidad' 		maxlength="12" autocomplete="off"></td>
+            <td><input type='text' name='cantidad' 		id='cant_analisis' 	maxlength="8" value="1.00" readonly></td>
+
+            <td><input type='text' name='rendimiento' 		id='rendimiento' class="numerico" autocomplete="off" 	maxlength="8" ></td>
+        </tr>
+
+        <tr><td ><LABEL>MINI DESCRIPCION</LABEL></td></tr>
+        <tr><td colspan='6'><input type='text' name='mini_descripcion' 		id='mini_descripcion' class='largo'  autocomplete="off"></td></tr>
+
+        <tr><td colspan='6'><LABEL>DESCRIPCION DE LA PARTIDA</LABEL></td></tr>
+        <tr><td colspan='6'><textarea name="descripcion" rows="3" cols="120" class='largo' ><?php if (isset($this->datos['descripcion'])) echo $this->datos['descripcion'] ?></textarea></td></tr>
+        
+        <tr><td COLSPAN="2">
+                    <input type='submit' value='guardar' class="btn btn-otro">
+		
+            </td>
+        </tr>
+    </table>
+    </form>

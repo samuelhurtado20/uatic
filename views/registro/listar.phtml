@@ -1,0 +1,48 @@
+
+    <h3>usuarios Registrados</h3>
+
+<?php if(isset($this->usuarios) && count($this->usuarios)): ?>
+<table class="lista">
+	<thead>
+		<td width="40px">imagen</td>
+        <td width="100px">cedula</td>
+		<td width="200px">nombre y apellido</td>
+		<td width="100px">nivel de acceso</td>
+        
+		<td width="120px">email</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->usuarios); $i++): ?>
+    <tr>
+        <td>            
+            <img id="imagen" src="<?php echo BASE_URL;?>views/registro/imagenes/<?php if($this->usuarios[$i]['foto'] != '') {echo $this->usuarios[$i]['foto'];} if($this->usuarios[$i]['foto'] == '') {echo 'default.jpg';} ?>" width="100px" height="100px" border="2px">
+            <br> 
+        </td>
+        <td><?php echo $this->usuarios[$i]['cedula']; ?></td>
+        <td><?php echo ucwords(strtolower($this->usuarios[$i]['nombre'])) . ' ' . ucwords(strtolower($this->usuarios[$i]['apellido'])); ?></td>
+        <td><?php echo ucwords(strtolower($this->usuarios[$i]['role'])); ?></td>
+        
+        <td><?php echo $this->usuarios[$i]['email']; ?></td>
+        <td>
+            <a title="Editar Usuario" href="<?php echo BASE_URL . 'registro/editar/' . $this->usuarios[$i]['id']; ?>"><img width='20px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a>
+        </td>
+        <td>
+            <a title="Enviar Email" href="<?php echo BASE_URL . 'registro/enviarEmail/' . $this->usuarios[$i]['id'] ."/". $this->usuarios[$i]['nombre'] ."/". $this->usuarios[$i]['apellido'] ."/". $this->usuarios[$i]['email'] ."/". $this->usuarios[$i]['codigo']; ?>"><img width='20px' src='<?php echo BASE_URL;?>public/img/48.png'></a>
+        </td>
+        <td>
+            <a title="Eliminar Usuario" onClick="confirma('<?php echo BASE_URL . 'registro/eliminar/' . $this->usuarios[$i]['id']; ?>'); return false;"><img width='20px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a>
+        </td>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No Existen Usuarios Registrados</strong><br>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) { echo $this->paginacion; } ?>
+
+    <br><br>
+    <br><br>

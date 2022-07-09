@@ -1,0 +1,57 @@
+
+    <h3>editar material</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>material/editar/<?php echo $this->datos['id_materiales']; ?>">
+        <input type="hidden" name="guardar" value="1" />
+    <table>
+        <tr>
+            <td>
+                <label>id material</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='id_materiales' id="id_materiales" maxlength="8" value="<?php if (isset($this->datos['id_materiales'])) echo $this->datos['id_materiales']; ?>" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <LABEL>nombre del material</LABEL>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea name="material" rows="2" cols="80" class='largo' ><?php if (isset($this->datos['material'])) echo $this->datos['material'] ?></textarea>
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <label>unidad de medida</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='unidad' id="id_materiales" maxlength="8" value="<?php if (isset($this->datos['unidad'])) echo $this->datos['unidad']; ?>">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <label>precio actual</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='precio' id="precio"  class="numerico" autocomplete="off" maxlength="8" value="<?php if (isset($this->datos['precio'])) echo $this->datos['precio']; ?>">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                    <input type='submit' value='editar' class="btn btn-otro">
+		
+            </td>
+        </tr>
+    </table>
+    </form>

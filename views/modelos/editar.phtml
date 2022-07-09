@@ -1,0 +1,88 @@
+
+    <h3>editar modelo de vivienda</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>modelos/editar/<?php echo $this->datos['id_modelo_vivienda'] ?>">
+        <input type="hidden" name="guardar" value="1" />
+        <input type="hidden" name="id" value="<?php if(isset($this->datos['id_modelo_vivienda'])) echo $this->datos['id_modelo_vivienda'] ?>" />
+        <table>
+            <tr><td colspan='6'><LABEL>DESCRIPCION DEL MODELO DE LA VIVIENDA</LABEL></td></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'><input type='text' name='descripcion' id='descripcion' class='largo' value="<?php if(isset($this->datos['descripcion'])) echo $this->datos['descripcion'] ?>"></td></tr>
+
+            <tr><td><label>area</label></td>
+                <td><label>cuartos</label></td>
+                <td><label>banos</label></td>
+            </tr>
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+
+            <tr><td><input type='text' name='area' 	id='area' 	maxlength="8" value="<?php if(isset($this->datos['area']))      echo $this->datos['area'] ?>"></td>
+                <td><input type='text' name='cuartos' 	id='cuartos'	maxlength="8" value="<?php if(isset($this->datos['cuartos']))   echo $this->datos['cuartos'] ?>"></td>
+                <td><input type='text' name='banos'	id='banos' 	maxlength="8" value="<?php if(isset($this->datos['banos']))     echo $this->datos['banos'] ?>"></td>
+            </tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td><label>sala</label></td>
+                <td><label>sala comedor</label></td>
+                <td><label>comedor</label></td>
+                <td><label>cocina</label></td>
+            </tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+
+            <tr><td>
+                    <select name='sala' class='pequeño'>		
+                        <option value='no' <?php if(isset($this->datos['sala']) && ($this->datos['sala']=='no')) echo "selected"; ?>>no</option>
+                        <option value='si' <?php if(isset($this->datos['sala']) && ($this->datos['sala']=='si')) echo "selected"; ?>>si</option>
+                    </select>
+                </td>
+                <td>
+                    <select name='salacomedor' class='pequeño'>	
+                        <option value='no' <?php if(isset($this->datos['salacomedor']) && ($this->datos['salacomedor']=='no')) echo "selected"; ?>>no</option>
+                        <option value='si' <?php if(isset($this->datos['salacomedor']) && ($this->datos['salacomedor']=='si')) echo "selected"; ?>>si</option>
+                    </select>
+                </td>
+                <td>
+                    <select name='comedor' class='pequeño'>		
+                        <option value='no' <?php if(isset($this->datos['comedor']) && ($this->datos['comedor']=='no')) echo "selected"; ?>>no</option>
+                        <option value='si' <?php if(isset($this->datos['comedor']) && ($this->datos['comedor']=='si')) echo "selected"; ?>>si</option>
+                    </select>
+                </td>
+                <td>
+                    <select name='cocina' class='pequeño'>		
+                        <option value='no' <?php if(isset($this->datos['cocina']) && ($this->datos['cocina']=='no')) echo "selected"; ?>>no</option>
+                        <option value='si' <?php if(isset($this->datos['cocina']) && ($this->datos['cocina']=='si')) echo "selected"; ?>>si</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr><td><label>iva</label></td>
+                <td><label>prestaciones</label></td>
+                <td><label>administracion</label></td>
+                <td><label>utilidad</label></td>
+            </tr>
+            
+            <tr><td>
+                    <input type='text' name='iva' class='pequeño' value="<?php echo $this->porcentajes['iva'] ?>">%
+                </td>
+                <td>
+                    <input type='text' name='prestaciones' class='pequeño' value="<?php echo $this->porcentajes['prestaciones'] ?>">%
+                </td>
+                <td>
+                    <input type='text' name='administracion' class='pequeño' value="<?php echo $this->porcentajes['administracion'] ?>">%
+                </td>
+                <td>
+                    <input type='text' name='utilidad' class='pequeño' value="<?php echo $this->porcentajes['utilidad'] ?>">%
+                </td>
+            </tr>
+            
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td COLSPAN="2">
+                    <input type='submit' value='editar' class="btn btn-otro">
+		
+                </td></tr>
+
+        </table></form>

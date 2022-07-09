@@ -1,0 +1,46 @@
+
+    <h3>agregar mano de obra</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>mano/agregar">
+        <input type="hidden" name="guardar" value="1" />
+    <table>
+
+        <tr>
+            <td>
+                <LABEL>nombre de la mano de obra</LABEL>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea name="nombre" rows="2" cols="80" class='largo' ></textarea>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <label>unidad</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='unidad' id="unidad" maxlength="8" autocomplete="off">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <label>jornal</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='jornal' id="precio" class="numerico" maxlength="8" autocomplete="off">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='submit' value='agregar' class="btn btn-otro">
+            </td>
+        </tr>
+    </table>
+    </form>
+

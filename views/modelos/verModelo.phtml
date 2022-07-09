@@ -1,0 +1,472 @@
+<div id="header2">
+    <ul class="nav">
+        <li><a href="#primero" id="uno" class='activo'>Descripcion Del Modelo</a></li>
+        <li><a href="#segundo" id="dos">Memoria Descriptiva</a></li>
+        <li><a href="#tercero" id="tres">Planos</a></li>
+        <li><a href="#cuarto" id="cuatro">Infograf&iacute;a</a></li>
+        <li><a href="#quinto" id="cinco">Presupuesto</a></li>
+
+    </ul>
+</div>
+<div id="primero" style="display:block;">
+
+        <h3>Modelo De Vivienda</h3>
+        <form method="post" action="<?php echo BASE_URL; ?>modelos/editar">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="id" value="<?php if (isset($this->datos['id_modelo_vivienda'])) echo $this->datos['id_modelo_vivienda'] ?>" readonly />
+            <table>
+                <tr><td colspan='6'><LABEL>DESCRIPCION DEL MODELO DE LA VIVIENDA</LABEL></td></tr>
+                <tr><td colspan='6'></tr>
+                <tr><td colspan='6'></tr>
+                <tr><td colspan='6'><input type='text'  class='largo' value="<?php if (isset($this->datos['descripcion'])) echo $this->datos['descripcion'] ?>" readonly ></td></tr>
+
+                <tr><td><label>area</label></td>
+                    <td><label>cuartos</label></td>
+                    <td><label>banos</label></td>
+                </tr>
+
+                <tr><td colspan='6'></tr>
+                <tr><td colspan='6'></tr>
+
+                <tr><td><input type='text' name='area' 	id='area' 	maxlength="8" value="<?php if (isset($this->datos['area'])) echo $this->datos['area'] ?>" readonly ></td>
+                    <td><input type='text' name='cuartos' 	id='cuartos'	maxlength="8" value="<?php if (isset($this->datos['cuartos'])) echo $this->datos['cuartos'] ?>" readonly ></td>
+                    <td><input type='text' name='banos'	id='banos' 	maxlength="8" value="<?php if (isset($this->datos['banos'])) echo $this->datos['banos'] ?>" readonly ></td>
+                </tr>
+                <tr><td colspan='6'></tr>
+                <tr><td colspan='6'></tr>
+                <tr><td><label>sala</label></td>
+                    <td><label>sala comedor</label></td>
+                    <td><label>comedor</label></td>
+                    <td><label>cocina</label></td>
+                </tr>
+                <tr><td colspan='6'></tr>
+                <tr><td colspan='6'></tr>
+
+                <tr><td>
+                        <select name='sala' class='pequeño' disabled>		
+                            <option value='no' <?php if (isset($this->datos['sala']) && ($this->datos['sala'] == 'no')) echo "selected"; ?>>no</option>
+                            <option value='si' <?php if (isset($this->datos['sala']) && ($this->datos['sala'] == 'si')) echo "selected"; ?>>si</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name='salacomedor' class='pequeño' disabled>	
+                            <option value='no' <?php if (isset($this->datos['salacomedor']) && ($this->datos['salacomedor'] == 'no')) echo "selected"; ?>>no</option>
+                            <option value='si' <?php if (isset($this->datos['salacomedor']) && ($this->datos['salacomedor'] == 'si')) echo "selected"; ?>>si</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name='comedor' class='pequeño' disabled>		
+                            <option value='no' <?php if (isset($this->datos['comedor']) && ($this->datos['comedor'] == 'no')) echo "selected"; ?>>no</option>
+                            <option value='si' <?php if (isset($this->datos['comedor']) && ($this->datos['comedor'] == 'si')) echo "selected"; ?>>si</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name='cocina' class='pequeño' disabled>		
+                            <option value='no' <?php if (isset($this->datos['cocina']) && ($this->datos['cocina'] == 'no')) echo "selected"; ?>>no</option>
+                            <option value='si' <?php if (isset($this->datos['cocina']) && ($this->datos['cocina'] == 'si')) echo "selected"; ?>>si</option>
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr><td colspan='6'></tr>
+                <tr><td colspan='6'></tr>
+
+            </table></form>
+
+    
+</div> <!-- primer div -->
+
+
+
+
+<div id="segundo"  style="display:none;">
+    
+
+        <h3>Memoria Descriptiva</h3>
+<?php if (!empty($this->imagenesMemoria)): ?>
+    <div class="flex-container">
+        <div class="flexslider">
+            <ul class="slides">
+                <?php for ($i = 0; $i < count($this->imagenesMemoria); $i++): ?>
+                    <li><h2><?php echo $this->imagenesMemoria[$i]['descripcion']; ?></h2><img src="<?php echo BASE_URL; ?>views/modelos/imagenes/<?php echo $this->imagenesMemoria[$i]['imagen']; ?>" /></li>
+                <?php endfor; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
+    <br><br><br><br>
+    <table>
+    <?php for ($i = 0; $i < count($this->enlacesMemoria); $i++): ?>
+            <tr><td><h2>enlace para descarga: <a href="<?php echo BASE_URL; ?>views/modelos/imagenes/<?php echo $this->enlacesMemoria[$i]['imagen']; ?>" target="_blank">
+            <?php echo $this->enlacesMemoria[$i]['descripcion']; ?></a></h2></td></tr>
+    <?php endfor; ?>
+    </table>
+    
+
+        <form action="<?php echo BASE_URL; ?>modelos/guardarImagen/<?php echo $this->datos['id_modelo_vivienda'] ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="tipo" value="3" />
+            <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>' />
+            <table>
+                <tr><td colspan="2">
+
+                    <h2>cargar imagen de la memoria descriptiva</h2>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <label>descripcion:</label>
+                    </td>
+                    <td>
+                        <textarea name="descripcion" class='media'> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Archivo:</label>
+                    </td>
+                    <td>
+                        <div id="queue"></div>
+                        <input id="file" name="file" type="file" multiple="true">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input name="submit" type="submit" value="Subir!" class="btn btn-otro ayuda-cargar" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+        <form action="<?php echo BASE_URL; ?>modelos/subirPDF" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="tipo" value="7" />
+            <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>' />
+            <table>
+                <tr><td colspan="2">
+
+                    <h2>cargar archivo pdf para descarga</h2>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <label>descripcion:</label>
+                    </td>
+                    <td>
+                        <textarea name="descripcion" class='media'> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Archivo:</label>
+                    </td>
+                    <td>
+                        <div id="queue"></div>
+                        <input id="file" name="pdf" type="file">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input name="submit" type="submit" value="Subir!" class="btn btn-otro ayuda-cargar" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+<br><br><br>
+ 
+</div><!-- div segundo-->
+
+
+
+
+<link rel="stylesheet" href="<?php echo BASE_URL; ?>views/modelos/css/flexslider.css">
+<script type="text/javascript" src="<?php echo BASE_URL; ?>views/modelos/js/jquery.flexslider-min.js"></script>
+
+<div id="tercero"  style="display:none;">
+    
+
+        <h3>planos del modelo</h3>
+<?php if (!empty($this->imagenesPlano)): ?>
+    <div class="flex-container">
+        <div class="flexslider">
+            <ul class="slides">
+                <?php for ($i = 0; $i < count($this->imagenesPlano); $i++): ?>
+                    <li><h2><?php echo $this->imagenesPlano[$i]['descripcion']; ?></h2><img src="<?php echo BASE_URL; ?>views/modelos/imagenes/<?php echo $this->imagenesPlano[$i]['imagen']; ?>" /></li>
+                <?php endfor; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
+    <br><br><br><br>
+
+        <form action="<?php echo BASE_URL; ?>modelos/guardarImagen/<?php echo $this->datos['id_modelo_vivienda'] ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="tipo" value="2" />
+            <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>' />
+            <table>
+                <tr><td colspan="2">
+
+                    <h2>cargar planos</h2>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <label>descripcion:</label>
+                    </td>
+                    <td>
+                        <textarea name="descripcion" class='media'> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Archivo:</label>
+                    </td>
+                    <td>
+                        <div id="queue"></div>
+                        <input id="file" name="file" type="file" multiple="true">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input name="submit" type="submit" value="Subir!" class="btn btn-otro ayuda-cargar" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <form action="<?php echo BASE_URL; ?>modelos/subirPDF" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="tipo" value="5" />
+            <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>' />
+            <table>
+                <tr><td colspan="2">
+
+                    <h2>cargar archivo Autocad para descarga</h2>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <label>descripcion:</label>
+                    </td>
+                    <td>
+                        <textarea name="descripcion" class='media'> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Archivo:</label>
+                    </td>
+                    <td>
+                        <div id="queue"></div>
+                        <input id="file" name="pdf" type="file">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input name="submit" type="submit" value="Subir!" class="btn btn-otro ayuda-cargar" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+<br><br><br>
+ 
+</div><!-- div tercero-->
+
+
+<div id="cuarto"  style="display:none;">
+    
+
+        <h3>Infograf&iacute;a</h3>
+<?php if (!empty($this->imagenesInfografia)): ?>
+    <div class="flex-container">
+        <div class="flexslider">
+            <ul class="slides">
+                <?php 
+                
+                for ($i = 0; $i < count($this->imagenesInfografia); $i++): ?>
+                    <li><h2><?php echo $this->imagenesInfografia[$i]['descripcion']; ?></h2><img src="<?php echo BASE_URL; ?>views/modelos/imagenes/<?php echo $this->imagenesInfografia[$i]['imagen']; ?>" /></li>
+                <?php
+                endfor;?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
+    <br><br><br><br>
+    <table>
+
+    <?php 
+    if (!empty($this->enlacesInfografia)):
+        for ($i = 0; $i < count($this->enlacesInfografia); $i++): ?>
+                <tr><td><h2>enlace para descarga: <a href="<?php echo BASE_URL; ?>views/modelos/imagenes/<?php echo $this->enlacesInfografia[$i]['imagen']; ?>" target="_blank">
+                <?php echo $this->enlacesInfografia[$i]['descripcion']; ?></a></h2></td></tr>
+        <?php 
+        endfor; 
+    endif; ?>
+    </table>
+
+        <form action="<?php echo BASE_URL; ?>modelos/guardarImagen/<?php echo $this->datos['id_modelo_vivienda'] ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="tipo" value="4" />
+            <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>' />
+            <table>
+                <tr><td colspan="2">
+
+                    <h2>cargar Infograf&iacute;a</h2>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <label>descripcion:</label>
+                    </td>
+                    <td>
+                        <textarea name="descripcion" class='media'> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Archivo:</label>
+                    </td>
+                    <td>
+                        <div id="queue"></div>
+                        <input id="file" name="file" type="file" multiple="true">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input name="submit" type="submit" value="Subir!" class="btn btn-otro ayuda-cargar" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <form action="<?php echo BASE_URL; ?>modelos/subirPDF" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="guardar" value="1" />
+            <input type="hidden" name="tipo" value="6" />
+            <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>' />
+            <table>
+                <tr><td colspan="2">
+
+                    <h2>cargar archivo pdf para descarga</h2>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <label>descripcion:</label>
+                    </td>
+                    <td>
+                        <textarea name="descripcion" class='media'> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Archivo:</label>
+                    </td>
+                    <td>
+                        <div id="queue"></div>
+                        <input id="file" name="pdf" type="file">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input name="submit" type="submit" value="Subir!" class="btn btn-otro ayuda-cargar" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <br><br><br>
+
+
+ 
+</div><!-- div cuarto-->
+
+
+
+<div id="quinto" style="display:none;">
+    
+        <h3>agregar partida</h3>    
+
+        <div class="ui-widget">
+            <table class='lista'>
+                <thead>
+                    <tr>
+                        <td>descripcion</td>
+                        <td>unidad</td>
+                        <td>precio unit.</td>
+                        <td>cantidad</td>
+                        <td>etapa</td>
+                        <td>monto total</td>
+                        <td colspan="3">opciones</td>
+                    </tr>
+                </thead>
+
+                <?php 
+                $total_presu = 0;
+                for ($i = 0; $i < count($this->partidasModelo); $i++): 
+                    $total_presu += $this->partidasModelo[$i]['precio_unitario'] * $this->partidasModelo[$i]['cantidad'];
+                    ?>
+
+                    <tr>
+                        <td><?php echo $this->partidasModelo[$i]['descripcion']; ?></td>
+                        <td><?php echo $this->partidasModelo[$i]['unidad_medida']; ?></td>
+                        <td><?php echo $this->partidasModelo[$i]['precio_unitario']; ?></td>
+                        <td><?php echo $this->partidasModelo[$i]['cantidad']; ?></td>
+
+                        <td><?php echo $this->partidasModelo[$i]['etapa']; ?></td>
+
+                        <td><?php echo $this->partidasModelo[$i]['precio_unitario'] * $this->partidasModelo[$i]['cantidad']; ?></td>
+
+                        <td><a href="<?php echo BASE_URL . 'modelos/verPartidaModelo/' . $this->partidasModelo[$i]['id_partidas_presupuesto']; ?>"><img width='18px' src='<?php echo BASE_URL; ?>public/img/eye.png'></a></td>
+                        <td><a href="<?php echo BASE_URL . 'modelos/editarPartidaModelo/' . $this->partidasModelo[$i]['id_partidas'] . '/' . $this->partidasModelo[$i]['id_modelo_vivienda']; ?>"><img width='18px' src='<?php echo BASE_URL; ?>public/img/lapiz.ico'></a></td>
+                        <td><a href="<?php echo BASE_URL . 'modelos/eliminarPartidaModelo/' . $this->partidasModelo[$i]['id_partidas'] . '/' . $this->partidasModelo[$i]['id_modelo_vivienda']; ?>"><img width='18px' src='<?php echo BASE_URL; ?>public/img/delete.ico'></a></td>
+                    </tr>
+
+                <?php endfor; ?>
+                <form method="post" action="<?php echo BASE_URL; ?>modelos/partidaModelo" id="formulario">
+                    <input type="hidden" name="id_partidas" value='' id="id_partidas">
+                    <input type="hidden" name="id_modelo_vivienda" value='<?php echo $this->datos['id_modelo_vivienda'] ?>'>
+                    <input type="hidden" name="guardar" value="1">
+                    <tr><td><input name="descripcion"       id="descripcion"    class='largo'/></td>
+                        <td><input name="unidad"        id="unidad"         class='pequeño' disabled /></td>
+                        <td><input name="precio"        id="precio"         class='pequeño' readonly/></td>
+                        <td><input name="cantidad"      id="cantidad"       class='pequeño numerico' autocomplete="off" /></td>
+                        <td>
+                            <select name="etapa">
+                                <option value=''>Seleccione la etapa...</option>
+                            <?php 
+                                for ($i = 0; $i < count($this->etapas); $i++):
+
+                                    echo "<option value=".$this->etapas[$i]['numero'].">". 
+                                            $this->etapas[$i]['numero'] ."-". $this->etapas[$i]['etapa']. "
+                                            </option>"; 
+
+                                endfor;
+                            ?>
+
+                            </select>
+                        </td>
+                        <td><input name="total"         id="total"              class='pequeño' readonly /></td>
+                        <td colspan="3"><input name='presupuesto_partida'  type='submit'        class="btn btn-otro ayuda-cargar" value='guardar' ></td>
+                    </tr>
+
+                </form>
+                <tr>
+                    <td colspan='6' class='derecha'><label>total presupuesto: </label>
+                        <span class='total'><input type="text" value="<?php echo number_format($total_presu, 2, ',', '.'); ?>" disabled readonly> bs.</span></td>
+                </tr>
+            </table>
+            <br><br>
+
+        </div>
+    
+</div><!-- div quinto-->

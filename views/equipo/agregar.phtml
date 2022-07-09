@@ -1,0 +1,59 @@
+
+
+    <h3>agregar equipo</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>equipo/agregar">
+        <input type="hidden" name="guardar" value="1" />
+    <table>
+
+        <tr>
+            <td>
+                <LABEL>nombre del equipo</LABEL>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea name="nombre" rows="2" cols="80" class='largo' ></textarea>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <label>COP</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='cop' id="cop" class="numerico" maxlength="12" autocomplete="off">
+            </td>
+        </tr> 
+        
+        <tr>
+            <td>
+                <label>unidad de medida</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='unidad' id="id_materiales" maxlength="12" autocomplete="off">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <label>precio</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='text' name='precio' id="precio" class="numerico" maxlength="12" autocomplete="off">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type='submit' value='agregar' class="btn btn-otro">
+            </td>
+        </tr>
+    </table>
+    </form>
+

@@ -1,0 +1,46 @@
+
+        </section>
+
+    <div id="login">
+        <form name="form1" method="post" action="<?php echo BASE_URL; ?>login">
+        <div id="iniciar">
+            
+        
+            <span class="iniciar">iniciar sesi&oacuten</span>
+            <input type="hidden" name="enviar" value="1">                
+                <br />
+                <input type="email" name="email" class="inputredondo" autocomplete="off" value="<?php if (isset($this->datos)) echo $this->datos['email'];  ?>" placeholder="Email">                
+                <br />
+                <input type="password" name="pass" class="inputredondo"  placeholder="Contraseña" value="">
+
+        
+        
+        </div>
+        <div id="captcha">
+            <img  src="<?php echo BASE_URL; ?>views/login/captcha.php"><br />
+            <input type="text" name="captcha" class="inputredondo numerico"  placeholder="Numeros de la Imagen" autocomplete="off">
+        </div>
+
+        <div id="enviar">
+            <input type='submit' value='entrar' class="btn btnentrar">
+            
+        </div>
+
+        </form>
+    </div>
+
+<style type="text/css">
+
+footer, #atras,nav{
+    display: none;
+}
+
+
+section{
+    background-image:url(./views/layout/layout3/img/fondo.png);
+    background-size: 100%;
+    background-position: center;
+    height: 490px;
+}
+
+</style>

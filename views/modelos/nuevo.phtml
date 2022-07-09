@@ -1,0 +1,69 @@
+
+    <h3>Agregar Modelo De Vivienda</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>modelos/nuevo">
+        <input type="hidden" name="guardar" value="1" />
+        <table>
+            <tr><td colspan='6'><LABEL>DESCRIPCION DEL MODELO DE LA VIVIENDA</LABEL></td></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'><input type='text' name='descripcion' id='descripcion' class='largo' autocomplete="off"></td></tr>
+
+            <tr><td><label>codigo modelo</label></td>
+                <td><label>area</label></td>
+                <td><label>cuartos</label></td>
+                <td><label>banos</label></td>
+            </tr>
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+
+            <tr><td><input type='text' name='codigo' 	id='codigo' 	maxlength="25"  autocomplete="off"></td>
+                <td><input type='text' name='area' 	id='area' 	maxlength="8"  autocomplete="off"></td>
+                <td><input type='text' name='cuartos' 	id='cuartos'	maxlength="8"  autocomplete="off"></td>
+                <td><input type='text' name='banos'	id='banos' 	maxlength="8"  autocomplete="off"></td>
+            </tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td><label>sala</label></td>
+                <td><label>sala comedor</label></td>
+                <td><label>comedor</label></td>
+                <td><label>cocina</label></td>
+            </tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+
+            <tr><td>
+                    <select name='sala' class='pequeño'>		
+                        <option value='no'>no</option>
+                        <option value='si'>si</option>
+                    </select>
+                </td>
+                <td>
+                    <select name='salacomedor' class='pequeño'>	
+                        <option value='no'>no</option>
+                        <option value='si'>si</option>
+                    </select>
+                </td>
+                <td>
+                    <select name='comedor' class='pequeño'>		
+                        <option value='no'>no</option>
+                        <option value='si'>si</option>
+                    </select>
+                </td>
+                <td>
+                    <select name='cocina' class='pequeño'>		
+                        <option value='no'>no</option>
+                        <option value='si'>si</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td COLSPAN="2">
+                    <input type='submit' value='agregar' class="btn btn-otro">
+		
+                </td></tr>
+
+        </table></form>

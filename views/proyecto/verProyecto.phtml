@@ -1,0 +1,241 @@
+<div id="header2">
+    <ul class="nav">
+        <li><a href="#primero" id="uno" class='activo'>	Informacion General</a></li>
+        <li><a href="#segundo" id="dos">	Presupuesto</a></li>
+        <li><a href="#tercero" id="tres">Resumen de Avance</a></li>
+        
+        <li><a href="#quinto" id="cinco">Registrar Misionero</a></li>
+        <li><a href="#cuarto" id="cuatro">Registro de Valuacion</a></li>
+
+    </ul>
+</div>
+<div id="primero" style="display:block;">
+    
+        <h3>informaci&oacuten general del proyecto</h3>
+        <form method="post" action="operaciones.php" id="form-proyecto">
+            <table>
+                <tr>
+                    <td>
+                        <label>nombre del proyecto</label><br />
+                        <input type="text" name="nombre_proyecto" class='media' value='<?php echo $this->proyecto['nombre_proyecto']; ?>'  readonly><br />
+
+                        <label>estado</label><br />
+                        <input type="text" class='medio' value='<?php echo $this->proyecto['Estado']; ?>' readonly><br />
+
+                        <label>municipio</label><br />
+                        <input type="text" class='medio' value='<?php echo $this->proyecto['municipio']; ?>' readonly><br />
+
+                        <label>parroquia</label><br />
+                        <input type="text" class='medio' value='<?php echo $this->proyecto['Parroquia']; ?>' readonly><br />
+
+                        <label>consejo comunal</label><br />
+                        <input type="text" class='medio' value='<?php echo $this->proyecto['ConsejoComunal']; ?>' readonly><br />
+
+                        <label>monto del financiamiento</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['monto_financiamiento']; ?>' readonly><br />
+
+                    </td>
+                    <td>
+                        <label>viviendas a sustituir</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['viviendas_sustituir']; ?>' readonly><br />
+
+                        <label>viviendas a rehabilitar</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['viviendas_rehabilitar']; ?>' readonly><br />
+
+                        <label>modelo de la vivienda</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['descripcion']; ?>' class='medio' readonly><br />
+
+                        <label>metros cuadados de construccion</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['area']; ?>' readonly><br />
+
+                        <label>n° cuartos</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['cuartos']; ?>'  readonly><br />
+
+                        <label>n° baños</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['banos']; ?>' readonly><br />
+                    </td>
+                    <td>
+                        <label>fecha de inicio</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['fecha_inicio']; ?>' readonly><br />
+
+                        <label>fecha de culminacion</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['fecha_culminacion']; ?>' readonly><br />
+
+                        <label>responsable uatic</label><br />
+                        <input type="text" value='<?php echo ucwords(strtolower($this->proyecto['nombre']))." ".ucwords(strtolower($this->proyecto['apellido'])); ?>' class='medio' readonly><br />
+
+                        <label>telefono responsable uatic</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['telefono']; ?>' readonly><br />
+
+                        <label>responsable consejo comunal</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['responsable_consejo']; ?>' class='medio' readonly><br />
+
+                        <label>telefono responsable consejo comunal</label><br />
+                        <input type="text" value='<?php echo $this->proyecto['telefono_consejo']; ?>' readonly><br />
+
+                    </td>
+                </tr>
+
+
+
+            </table></form>
+    
+</div>
+
+<div id="segundo" style="display:none;">
+    
+        <h3>presupuesto del proyecto</h3>	
+
+        <div class="ui-widget">
+            <table class='lista'>
+                <thead>
+                    <td>descripcion</td>
+                    <td width="125px">unidad</td>
+                    <td width="125px">monto partida</td>
+                    <td width="125px">cantidad</td>
+                    <td width="125px">monto total</td>
+
+                </thead>
+
+                <?php
+                $precio = 0;
+                $cantidad = 0;
+                $total_total = 0;
+
+                for ($i = 0; $i < count($this->presupuestoProyecto); $i++):
+
+                    $precio = $this->presupuestoProyecto[$i]['precio_unitario'] * $this->proyecto['viviendas_sustituir'];
+                    $cantidad = $this->presupuestoProyecto[$i]['cantidad'] * $this->proyecto['viviendas_sustituir'];
+                    $total = $precio * $cantidad;
+                    $total_total += $total;
+                    ?>
+
+                    <tr>
+                        <td><?php echo $this->presupuestoProyecto[$i]['descripcion']; ?></td>
+                        <td><?php echo $this->presupuestoProyecto[$i]['unidad_medida']; ?></td>
+                        <td><?php echo number_format($precio, 2, ',', '.'); ?> bs.</td>
+                        <td><?php echo number_format($cantidad, 2, ',', '.'); ?></td>
+                        <td><?php echo number_format($total, 2, ',', '.'); ?> bs.</td>
+                    </tr>
+
+                <?php endfor; ?>
+
+                <tr>
+                    <td colspan='6' class='derecha'><label>total proyecto: </label>
+                        <span class='total'><?php echo number_format($total_total, 2, ',', '.'); ?> bs.</span></td>
+                </tr>
+            </table>
+
+        </div>
+    
+
+</div><!-- div segundo-->
+
+<div id="tercero"  style="display:none;">
+</div><!-- div tercero-->
+<div id="cuarto"  style="display:none;">
+
+    
+        <h3>viviendas asignadas</h3>
+
+        <?php if (isset($this->viviendas) && count($this->viviendas)): ?>
+            <table CLASS='lista'>
+                <thead>
+                    <tr>
+                        <td width="120px">codigo</td>
+                        <td width="140px">cedula jefe de familia</td>
+                        <td width="320px">nombre(s) y apellido(s)</td>
+                        <td width="100px">telefono</td>
+                        <td width="60px">parentesco</td>
+                        <td colspan='3'>opciones</td>
+                    </tr>
+                </thead>
+                <?php for ($i = 0; $i < count($this->viviendas); $i++): ?>
+
+                    <tr>
+                        <td><?php echo strtoupper($this->viviendas[$i]['cod_vivienda']); ?></td>
+                        <td><?php echo $this->viviendas[$i]['cedula_jefe']; ?></td>
+                        <td><?php echo $this->viviendas[$i]['nombres'] ." ". $this->viviendas[$i]['apellidos']; ?></td>
+                        <td><?php echo $this->viviendas[$i]['telefono']; ?></td>
+                        <td><?php echo $this->viviendas[$i]['parentesco']; ?></td>
+
+                        <td><a href="<?php echo BASE_URL . 'vivienda/ver/' . $this->viviendas[$i]['id'].'/'.$this->viviendas[$i]['id_proyecto']; ?>"><img width='18px' src='<?php echo BASE_URL; ?>public/img/eye.png'></a></td>
+                        <td><a href="<?php echo BASE_URL . 'vivienda/editar/' . $this->viviendas[$i]['id'].'/'.$this->viviendas[$i]['id_proyecto']; ?>"><img width='18px' src='<?php echo BASE_URL; ?>public/img/lapiz.ico'></a></td>
+                        <td><a href="<?php echo BASE_URL . 'vivienda/eliminar/' . $this->viviendas[$i]['id'].'/'.$this->viviendas[$i]['id_proyecto']; ?>"><img width='18px' src='<?php echo BASE_URL; ?>public/img/delete.ico'></a></td>
+                    </tr>
+
+                <?php endfor; ?>
+            </table>
+
+        <?php else: ?>
+            <p><strong>NO HAY VIVIENDAS ASIGNADAS<br></strong>
+            <?php endif; ?>
+    
+</div>
+<div id="quinto" style="display:none;">
+
+    
+        <h3>asignar vivienda</h3>
+
+        <form method="post" action="<?php echo BASE_URL; ?>vivienda/nueva" id="formulario">
+            <table>
+                <input type="hidden" name="id_proyecto" VALUE="<?php echo $this->proyecto['id_proyecto']; ?>">
+                <input type="hidden" name="guardar" VALUE="1">
+                
+                <tr>
+                    <td width="180px" valign="top">
+
+                        <label>nacionalidad</label><br />
+                        <select name='nacionalidad'>
+                            <option value='V'>venezolano</option>
+                            <option value='E'>extranjero</option>
+                        </select><br />
+
+                        <label>cedula</label><br />
+                        <input type="text" value='' name='cedula_jefe'><br />
+
+                        <label>sexo</label><br />
+                        <select name='sexo'>
+                            <option>masculino</option>
+                            <option>femenino</option>
+                        </select><br />
+
+                    </td>
+                    <td  width="400px">
+                        <label>Primer y Segundo Nombre</label><br />
+                        <input type="text" value='' class='media' name='nombres'><br />
+
+                        <label>Primer y Segundo Apellido</label><br />
+                        <input type="text" value='' class='media' name='apellidos'><br />
+
+                        <label>correo electronico</label><br />
+                        <input type="text" value='' class='media' name='correo'><br />
+
+                        <label>ubicacion de la vivienda</label><br />
+                        <input type="text" value='' class='media' name='ubicacion'><br />
+                    </td>
+                    <td  valign="top">
+                        
+                        <label>telefono</label><br />
+                        <input type="text" value='' name='telefono'><br />
+
+                        <label>parentesco</label><br />
+                        <input type="text" value='' name='parentesco'><br />
+
+                        <label>ocupacion</label><br />
+                        <input type="text" value='' name='ocupacion'><br />
+
+                    </td>
+
+                </tr>
+
+                <tr><td COLSPAN="2">
+                        <input type='submit' value='guardar' class="btn btn-otro">
+                        <span id="resultado"></span>
+                        <img  align="absmiddle" id="ajax_loader" src="img/ajax-loader6.gif" style=" display:none;"/>			
+                    </td></tr>
+
+            </table></form>
+    
+
+</div><!-- div quinto-->

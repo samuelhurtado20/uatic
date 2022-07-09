@@ -1,0 +1,34 @@
+
+    <h3>Equipos Registrados</h3>
+
+<?php if(isset($this->equipos) && count($this->equipos)): ?>
+<table class="lista">
+	<thead>
+		<td width="40px">id</td>
+		<td width="460px">nombre del equipo</td>
+		<td width="100px">tipo</td>
+                <td width="100px">cop</td>
+		<td width="120px">precio</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->equipos); $i++): ?>
+    <tr>
+        <td><?php echo $this->equipos[$i]['id_equipo']; ?></td>
+        <td><?php echo $this->equipos[$i]['nombre']; ?></td>
+        <td><?php echo $this->equipos[$i]['unidad']; ?></td>
+        <td><?php echo $this->equipos[$i]['COP']; ?></td>
+        <td><?php echo $this->equipos[$i]['precio']; ?></td>
+        <td><a href="<?php echo BASE_URL . 'equipo/editar/' . $this->equipos[$i]['id_equipo']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a></td>
+        <td><a onClick="confirma('<?php echo BASE_URL . 'equipo/eliminar/' . $this->equipos[$i]['id_equipo']; ?>'
+); return false;"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a></td>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>No Existen Equipos Registrados</strong><br>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) { echo $this->paginacion; } ?>

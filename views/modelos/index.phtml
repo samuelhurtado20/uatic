@@ -1,0 +1,42 @@
+   
+    <h3>Modelos de Vivienda</h3>
+
+<?php if(isset($this->modelos) && count($this->modelos)): ?>
+	<table CLASS='lista'>
+	<thead>
+		<td width="260px">descripcion</td>
+		<td width="100px">area (m2)</td>
+		<td width="60px">N° cuartos</td>
+		<td width="60px">N° baños</td>
+                <td width="60px">Sala</td>
+                <td width="60px">Comedor</td>
+                <td width="100px">SalaComedor</td>
+                <td width="60px">Cocina</td>
+		<td colspan='3'>opciones</td>
+
+	</thead>
+    <?php for($i=0; $i < count($this->modelos); $i++): ?>
+    
+    <tr>
+        <td><?php echo $this->modelos[$i]['descripcion']; ?></td>
+        <td><?php echo $this->modelos[$i]['area']; ?></td>
+        <td><?php echo $this->modelos[$i]['cuartos']; ?></td>
+        <td><?php echo $this->modelos[$i]['banos']; ?></td>
+        <td><?php echo $this->modelos[$i]['sala']; ?></td>
+        <td><?php echo $this->modelos[$i]['comedor']; ?></td>
+        <td><?php echo $this->modelos[$i]['salacomedor']; ?></td>
+        <td><?php echo $this->modelos[$i]['cocina']; ?></td>
+        <td><a href="<?php echo BASE_URL . 'modelos/verModelo/' . $this->modelos[$i]['id_modelo_vivienda']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/eye.png'></a></td>
+        <td><a href="<?php echo BASE_URL.'modelos/editar/' . $this->modelos[$i]['id_modelo_vivienda']; ?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/lapiz.ico'></a></td>
+        <td><a onClick="confirma('<?php echo BASE_URL.'modelos/eliminar/'.$this->modelos[$i]['id_modelo_vivienda'];?>'
+); return false;"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a></td>
+    </tr>
+    
+    <?php endfor; ?>
+</table>
+
+<?php else: ?>
+<p><strong>NO HAY MODELOS DE VIVIENDAS REGISTRADAS<br></strong>
+<?php endif; ?>
+
+    <?php if(isset($this->paginacion)) echo $this->paginacion; ?>

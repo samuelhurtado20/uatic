@@ -1,0 +1,65 @@
+
+    <h3>editar partida del presupuesto</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>modelos/editarPartidaModelo/<?php echo $this->datos['id_partidas'] ?>/<?php echo $this->datos['id_modelo_vivienda'] ?>">
+        <input type="hidden" name="guardar" value="1" />
+        <input type="hidden" name="id" value="<?php echo $this->datos['id_partidas'] ?>" />
+        <table>
+            <tr><td colspan='6'><LABEL>DESCRIPCION DE LA PARTIDA</LABEL></td></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'>
+                <textarea class="largo" readonly><?php if(isset($this->datos['descripcion'])) echo $this->datos['descripcion'] ?></textarea>
+                </td>
+            </tr>
+
+            <tr><td><label>unidad</label></td>
+                <td><label>precio unitario</label></td>
+                <td></td>
+            </tr>
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+
+            <tr><td><input type='text' name='unidad_medida' 	id='unidad_medida' 	maxlength="8" value="<?php if(isset($this->datos['unidad_medida']))      echo $this->datos['unidad_medida'] ?>" readonly></td>
+                <td><input type='text' name='precio' 	id='precio'	maxlength="8" value="<?php if(isset($this->datos['precio_unitario']))   echo $this->datos['precio_unitario'] ?>" readonly></td>
+                
+            </tr>
+
+            <tr><td><label>etapa</label></td>
+                <td><label>cantidad</label></td>
+                <td><label>monto total</label></td>
+            </tr>
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+
+            <tr><td>
+
+                    <select name="etapa" class="select">
+
+                            <?php 
+                                for ($i = 0; $i < count($this->etapas); $i++):
+
+                                    echo "<option value=".$this->etapas[$i]['numero'].">". 
+                                            $this->etapas[$i]['numero'] ."-". $this->etapas[$i]['etapa']. "
+                                            </option>"; 
+
+                                endfor;
+                            ?>
+
+                    </select>
+
+                </td>
+                <td><input type='text' name='cantidad'   id='cantidad'    maxlength="8" value="<?php if(isset($this->datos['cantidad']))   echo $this->datos['cantidad'] ?>" autocomplete="off"></td>
+                <td><input type='text' name='monto' id='monto'  maxlength="8" value="<?php echo $this->datos['precio_unitario'] * $this->datos['cantidad']; ?>" readonly></td>
+            </tr>
+         
+
+            <tr><td colspan='6'></tr>
+            <tr><td colspan='6'></tr>
+            <tr><td COLSPAN="2">
+                    <input type='submit' value='editar' class="btn btn-otro">
+		
+                </td></tr>
+
+        </table></form>

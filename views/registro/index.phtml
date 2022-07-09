@@ -1,0 +1,168 @@
+<h3>Registrar Usuario</h3>
+<form name="form1" method="post" action="" enctype="multipart/form-data">
+<table>
+
+    <input type="hidden" name="enviar" value="1">
+    
+    <tr>
+
+        <td valign=top rowspan="20">
+            
+            <div id="list">
+                <img id="imagen" src="<?php echo BASE_URL;?>views/registro/imagenes/default.jpg" width="150px" height="150px"><br>
+                 
+            </div>
+            <input type="file" name="files" id="files" style="width: 100px !important;">             
+        </td>    
+    </tr>
+    <tr>
+        <td colspan='2'>
+            <h2>datos personales</h2><hr size="5" noshade style="color: #ffffff;">
+        </td>
+
+    </tr>
+
+
+    <tr>
+
+        <td>
+        <label>cedula de identidad: </label>
+        <br />
+        <input type="text" name="cedula" class="medio numerico" value="<?php if(isset($this->datos)) echo $this->datos['cedula']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr>
+        <td>
+        <label>Nombre (s): </label>
+        <br />
+        <input type="text" name="nombre" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['nombre']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr><td>
+        <label>apellido (s): </label>
+        <br />
+        <input type="text" name="apellido" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['apellido']; ?>" autocomplete="off">
+    </td></tr>
+    
+    <tr><td>
+        <label>Titulo Obtenido: </label>
+        <br />
+        <input type="text" name="nivel" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['nivel']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr><td>
+        <label>telefono de contacto: </label>
+        <br />
+        <input type="text" name="telefono" class="medio numerico" value="<?php if(isset($this->datos)) echo $this->datos['telefono']; ?>" autocomplete="off">
+    </td></tr>
+
+  
+    <tr><td>
+        <label>Email: </label>
+        <br />
+        <input type="text" name="email" class="medio" value="<?php if(isset($this->datos)) echo $this->datos['email']; ?>" autocomplete="off">
+    </td></tr>
+
+    <tr>
+        <td colspan='2'>
+            <h2>lugar de residencia</h2><hr size="5" noshade style="color: #ffffff;">
+        </td>
+
+    </tr>
+
+    <tr><td>
+        <label>estado</label><br />
+                    <select  id="estado" class="select">
+                    </select><br />
+
+        <label>municipio</label><br />
+                    <select  id="municipio" class="select"></select><br />
+
+        <label>parroquia</label><br />
+                    <select name="id_parroquia" id="parroquia" class="select"></select><br />
+
+    </td></tr>
+
+    <tr><td>
+        <label>direccion de habitacion: </label>
+        <br />
+        <textarea autocomplete="off" name="direccion" class="media"><?php if(isset($this->datos)) echo $this->datos['direccion']; ?></textarea>
+    </td></tr>
+
+    <tr>
+        <td colspan='2'>
+            <h2>datos laborales</h2><hr size="5" noshade style="color: #ffffff;">
+        </td>
+
+    </tr>
+
+    <tr><td>
+        <label>Tipo de Usuario: </label>
+        <br />
+        <select name="role" id="role" class="select">
+            <option value="admin">Administrador</option>
+            <option value="proyecto">Proyectista</option>
+            <option value="tecnico" selected>Tecn&iacute;co</option>
+        </select>
+    </td></tr>
+
+    <tr><td>
+        <label>cargo actual: </label>
+        <br />
+        <input type="text" name="cargo" class="medio" value="tecnico residente" autocomplete="off">
+    </td></tr> 
+
+    <tr><td>
+        <label>estado</label><br />
+                    <select id="estado2" class="select">
+                    </select><br />
+
+        <label>municipio</label><br />
+                    <select name="municipio" id="municipio2" class="select"></select><br />
+    </td></tr>    
+
+        
+    <tr><td colspan="2">
+        <input type="submit" class="btn btn-otro" value="agregar">
+    </td></tr>    
+
+</table>
+</form>
+<br><br>
+
+
+<script>
+  function handleFileSelect(evt) {
+
+
+
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>

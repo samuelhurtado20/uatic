@@ -1,0 +1,33 @@
+
+    <h3>analisis de precios unitarios</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>partida/editar/<?php echo $this->datos['id_partidas']; ?>">
+        <input type="hidden" name="guardar" value="1" />
+        <input type="hidden" name="id" value="<?php echo $this->datos['id_partidas']; ?>" />
+    <table>
+        <tr>
+            <td><label>COVENIN</label></td>
+            <td><label>UNIDAD</label></td>
+            <td><label>CANT. ANALISIS</label></td>
+
+            <td><label>RENDIMIENTO</label></td>
+        </tr>
+        <tr>
+            <td><input type='text' name='codigo_covenin' 	id='covenin' 		maxlength="8" value="<?php if (isset($this->datos['codigo_covenin'])) echo $this->datos['codigo_covenin']; ?>"></td>
+            <td><input type='text' name='unidad_medida'		id='unidad' 		maxlength="8" value="<?php if (isset($this->datos['unidad_medida'])) echo $this->datos['unidad_medida']; ?>"></td>
+            <td><input type='text' name='cantidad' 		id='cantidad1'           maxlength="8" value="<?php if (isset($this->datos['cantidad'])) echo $this->datos['cantidad']; ?>" disabled></td>
+            <td><input type='text' name='rendimiento' 		id='rendimiento' class="numerico" 	maxlength="8" value="<?php if (isset($this->datos['rendimiento'])) echo $this->datos['rendimiento']; ?>"></td>
+        </tr>
+
+        <tr><td ><LABEL>MINI DESCRIPCION</LABEL></td></tr>
+        <tr><td colspan='6'><input type='text' name='mini_descripcion' 		id='mini_descripcion' class='largo' value="<?php if (isset($this->datos['mini_descripcion'])) echo $this->datos['mini_descripcion']; ?>"></td></tr>
+
+        <tr><td colspan='6'><LABEL>DESCRIPCION DE LA PARTIDA</LABEL></td></tr>
+        <tr><td colspan='6'><textarea name="descripcion" rows="3" cols="120" class='largo' ><?php if (isset($this->datos['descripcion'])) echo $this->datos['descripcion'] ?></textarea></td></tr>
+        
+        <tr><td COLSPAN="2">
+                    <input type='submit' value='guardar' class="btn btn-otro">
+		
+            </td>
+        </tr>
+    </table>
+    </form>

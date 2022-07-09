@@ -1,0 +1,77 @@
+    <h3>agregar proyecto</h3>
+    <form method="post" action="<?php echo BASE_URL; ?>proyecto/nuevo" id="form-proyecto">
+        <table>
+            <input type="hidden" name="guardar" value="1">
+
+            <tr>
+                <td valign='top'>
+                    <label>nombre del proyecto</label><br />
+                    <input type="text" name="nombre_proyecto" class='media'><br />
+
+                    <label>estado</label><br />
+                    <select name="estado" id="estado" class="select">
+
+                    </select><br />
+
+                    <label>municipio</label><br />
+                    <select name="municipio" id="municipio" class="select"></select><br />
+
+                    <label>parroquia</label><br />
+                    <select name="parroquia" id="parroquia" class="select"></select><br />
+
+                    <label>consejo comunal</label><br />
+                    <select name="consejo" id="consejo" class="select"></select><br />
+
+                    <!--<label>monto del financiamiento</label><br />
+                    <input type="text" name="monto_financiamiento"><br />-->
+                </td>
+                <td>
+                    <label>viviendas a sustituir</label><br />
+                    <input type="text" name="viviendas_sustituir"><br />
+
+                    <label>viviendas a rehabilitar</label><br />
+                    <input type="text" name="viviendas_rehabilitar"><br />
+
+                    <label>modelo de la vivienda</label><br />
+                    <select name="modelo_vivienda" id="modelo_vivienda"  class="select">
+                        
+                    </select><br />
+
+                    <label>metros cuadrados de construcci&oacute;n</label><br />
+                    <input type="text" name="m2" id='m2' disabled><br />
+
+
+                    <label>n° cuartos</label><br />
+                    <input type="text" name="n_cuartos" id='n_cuartos' disabled><br />
+
+                    <label>n° baños</label><br />
+                    <input type="text" name="n_banos" id='n_banos' disabled><br />
+                </td>
+                <td  valign='top'>
+                    <!--<label>fecha de inicio</label><br />
+                    <input type="text" name="fecha_inicio"><br />
+
+                    <label>fecha de culminacion</label><br />
+                    <input type="text" name="fecha_culminacion"><br />-->
+
+                    <label>responsable uatic</label><br />
+                    <select name="id" class='medio' id="responsable_uatic">
+                    </select><br />
+
+                    <label>telefono responsable uatic</label><br />
+                    <input type="text" name="telefono_uatic" id="telefono_uatic" disabled><br />
+
+                    <label>responsable consejo comunal</label><br />
+                    <input type="text" name="responsable_consejo"  class='medio'><br />
+
+                    <label>telefono responsable consejo comunal</label><br />
+                    <input type="text" name="telefono_consejo"><br />
+                </td>
+            </tr>
+
+            <tr><td COLSPAN="3">
+                    <input type='submit' value='guardar' class="btn btn-otro">
+                </td>
+            </tr>
+
+        </table></form>

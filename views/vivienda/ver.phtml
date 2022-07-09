@@ -1,0 +1,128 @@
+    <h3>Detalles De La Vivienda</h3>
+    <table>
+        <tr><td width="180px">
+
+                <label>codigo</label><br />
+                <input type="text" value="<?php echo strtoupper($this->viviendas['cod_vivienda']); ?>" name='cod_vivienda' disabled><br />
+
+                <label>nacionalidad</label><br />
+                <input type="text" value="<?php
+                if (isset($this->viviendas['nacionalidad']) && ($this->viviendas['nacionalidad'] == 'v'))
+                    echo "Venezolano"; else {
+                    echo "Extranjero";
+                }
+                ?>" name='cod_vivienda' disabled><br />
+
+                <label>cedula</label><br />
+                <input type="text" value="<?php echo $this->viviendas['cedula_jefe']; ?>" name='cedula_jefe' disabled><br />
+
+                <label>sexo</label><br />
+                <input type="text" value="<?php if (isset($this->viviendas['sexo'])) echo $this->viviendas['sexo']; ?>" name='cod_vivienda' disabled><br />
+
+            </td>
+            <td>
+                <label>Primer y Segundo Nombre</label><br />
+                <input type="text" value="<?php echo $this->viviendas['nombres']; ?>" class='media' name='nombres' disabled><br />
+
+                <label>Primer y Segundo Apellido</label><br />
+                <input type="text" value="<?php echo $this->viviendas['apellidos']; ?>" class='media' name='apellidos' disabled><br />
+
+                <label>correo electronico</label><br />
+                <input type="text" value="<?php echo $this->viviendas['correo']; ?>" class='media' name='correo' disabled><br />
+
+                <label>ubicacion de la vivienda</label><br />
+                <input type="text" value="<?php echo $this->viviendas['ubicacion']; ?>" class='media' name='ubicacion' disabled><br />
+            </td>
+            <td>
+
+
+                <label>telefono</label><br />
+                <input type="text" value="<?php echo $this->viviendas['telefono']; ?>" name='telefono' disabled><br />
+
+                <label>parentesco</label><br />
+                <input type="text" value="<?php echo $this->viviendas['parentesco']; ?>" name='parentesco' disabled><br />
+
+                <label>ocupacion</label><br />
+                <input type="text" value="<?php echo $this->viviendas['ocupacion']; ?>" name='ocupacion' disabled><br />
+
+            </td>
+
+        </tr>
+    </table>
+    <h2>valuaciones de la vivienda por partidas</h2>
+    <div id="accordion">
+        <?php for ($i = 0; $i < count($this->presupuestoProyecto); $i++): ?>
+
+            <h2><label>partida: </label><?php echo $this->presupuestoProyecto[$i]['descripcion'] . " / <label>" . $this->presupuestoProyecto[$i]['unidad_medida'] . ":</label> " . $this->presupuestoProyecto[$i]['cantidad']; ?></h2>                        
+            <div>
+                <form method="post" action="<?php echo BASE_URL; ?>vivienda/valuacion" id="<?php echo $this->presupuestoProyecto[$i]['id_partidas_presupuesto']; ?>">
+                    <table class='lista'>
+                        <thead>
+                            <tr>
+                                <td width="123px">fecha de inicio</td>
+                                <td width="123px">fecha final</td>
+                                <td width="123px">ejecutado</td>
+                                <td width="123px">acumulado</td>
+                                <td width="123px">resta</td>
+                                <td>opciones</td>
+                            </tr>
+                        </thead>
+                        <?php
+                        $acumulado = 0;
+                        for ($j = 0; $j < count($this->valuaciones); $j++):
+                            if ($this->valuaciones[$j]['id_partidas_presupuesto'] == $this->presupuestoProyecto[$i]['id_partidas_presupuesto']) :
+                                $acumulado += $this->valuaciones[$j]['ejecutado'];
+                                ?>
+
+                                <tr>
+                                    <td><?php echo $this->valuaciones[$j]['inicio']; ?></td>
+                                    <td><?php echo $this->valuaciones[$j]['final']; ?></td>
+                                    <td><?php echo $this->valuaciones[$j]['ejecutado']; ?></td>
+                                    <td><?php echo $acumulado; ?></td>
+                                    <td><?php echo $this->presupuestoProyecto[$i]['cantidad'] - $acumulado; ?></td>
+                                    <td><a href="<?php echo BASE_URL.'vivienda/verImagenes/'.
+                                            $this->valuaciones[$j]['id'].'/'.
+                                            $this->viviendas['id'];?>">
+                                            <img width='20px' src='<?php echo BASE_URL;?>public/img/image.png'>
+                                        </a>
+                                        <a href="<?php echo BASE_URL.'vivienda/imagenValuacion/'.
+                                            $this->valuaciones[$j]['id'].'/'.
+                                            $this->viviendas['id'];?>">
+                                            <img width='18px' src='<?php echo BASE_URL;?>public/img/subir.png'>
+                                        </a>
+                                        <a href="<?php echo BASE_URL.'vivienda/eliminarValuacion/'.$this->valuaciones[$j]['id'].'/'.$this->viviendas['id'].'/'.$this->viviendas['id_proyecto'];?>"><img width='18px' src='<?php echo BASE_URL;?>public/img/delete.ico'></a>
+                                    </td>
+                                </tr>                            
+                                <?php
+                            endif;
+                        endfor;
+                        
+                        if (Session::accesoViewEstricto(array('tecnico'))): 
+                        
+                        if($this->presupuestoProyecto[$i]['cantidad'] > $acumulado) :
+                        ?>
+
+                        <tr>
+                            <td colspan="6">
+                                <input type="hidden"    name="guardar" VALUE="1">
+                                <input type="text"      name="f_inicio">
+                                <input type="hidden"    name="id" VALUE="<?php echo $this->viviendas['id']; ?>">
+                                <input type="hidden"    name="id_proyecto" VALUE="<?php echo $this->viviendas['id_proyecto']; ?>">
+                                <input type="hidden"    name="id_partidas_presupuesto" VALUE="<?php echo $this->presupuestoProyecto[$i]['id_partidas_presupuesto']; ?>">
+                                <input type="hidden"    name="acumulado" VALUE="<?php echo $acumulado; ?>">
+                                <input type="text"      name='f_final'>
+                                <input type="hidden"    name="acumulado" VALUE="<?php echo $acumulado; ?>">
+                                <input type="text"      name='ejecutado'>
+                                <input type="text"      name='acumulado' disabled>
+                                <input type="hidden"    name="cantidad" VALUE="<?php echo $this->presupuestoProyecto[$i]['cantidad']; ?>">
+                                <input type="text"      name='resta' disabled>
+                                <input type='submit' value='guardar' class="btn btn-otro"></td>
+
+                        </tr>
+                        <?php endif; ?>
+                        <?php endif; ?>
+                    </table>
+                </form>
+            </div>
+        <?php endfor; ?>
+    </div>

@@ -1,0 +1,87 @@
+
+    <h3>cambiar lugar de residencia</h3>
+<div class="center">
+
+<table id="clave">
+<tr>
+  <td>
+    <h2>residencia actual</h2>
+  </td>
+
+</tr>
+<tr><td>
+        <label>estado</label>
+            <input type="text" class="medio"  value="<?php if (isset($this->datos['Estado'])) echo $this->datos['Estado']; ?>" disabled>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>municipio</label>
+            <input type="text" class="medio"  value="<?php if (isset($this->datos['municipio'])) echo $this->datos['municipio']; ?>" disabled>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>parroquia</label>
+            <input type="text" class="medio"  value="<?php if (isset($this->datos['Parroquia'])) echo $this->datos['Parroquia']; ?>" disabled>
+
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>consejo comunal</label>
+            <input type="text" class="medio"  value="<?php if (isset($this->datos['ConsejoComunal'])) echo $this->datos['ConsejoComunal']; ?>" disabled>
+
+    </td>
+</tr>
+</table>
+<form id="clave" method="post" action="">
+<input type="hidden" name="guardar" value="1">
+<table id="clave">
+<tr>
+  <td>
+    <h2>residencia nueva</h2>
+  </td>
+
+</tr>
+<tr><td>
+        <label>estado</label>
+            <select name="estado" id="estado" class="select">
+            </select>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>municipio</label>
+            <select name="id_municipio" id="municipio" class="select">
+            </select>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>parroquia</label>
+            <select name="id_parroquia" id="parroquia" class="select">
+            </select>
+
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>consejo comunal</label>
+            <select name="idConsejoComunal" id="consejo" class="select">
+            </select>
+
+    </td>
+</tr>
+
+<tr>
+    <td>          
+      <p>
+        <input type="submit" class="btn btn-otro" value="cambiar" />
+      </p>
+    </td>
+</tr>
+</table>
+</form>
+
+</div>
